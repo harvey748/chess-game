@@ -17,4 +17,14 @@ public class ImagePanel extends JPanel{
         }
         
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (image != null) {
+            // Draw the image scaled to fit the panel
+            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+    
 }

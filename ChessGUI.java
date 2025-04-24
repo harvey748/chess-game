@@ -22,16 +22,15 @@ public class ChessGUI {
         
         //putting the colour in the board
         for(int i=0; i<=7; i++){
-            for(int j=0; j<=7; j++){
-
+            
                 if(i%2==0){
                     
                     for(int n=0; n<8; n++){
                         if(n%2==0){
-                            panel.add(new ImagePanel("Blue.png"));
+                            panel.add(new ImagePanel("White.png"));
                         }
                         else{
-                            panel.add(new ImagePanel("White.png"));
+                            panel.add(new ImagePanel("Blue.png"));
                         }
                     }
 
@@ -48,18 +47,20 @@ public class ChessGUI {
                 }
 
             }
+        frame.setVisible(true);
+
 
         }
+    }
         
 
-        frame.setVisible(true);
 
 
             
         
         
 
-    }
 
 
-}
+
+
