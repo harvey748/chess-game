@@ -12,9 +12,11 @@ public class ChessGUI {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
 
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000,1000);
         frame.setLocationRelativeTo(null);
+        frame.setLayout(new GridLayout());
 
         frame.setVisible(true);
 
