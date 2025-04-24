@@ -38,10 +38,10 @@ public class ChessGUI {
                 else{
                     for(int m=0; m<8; m++){
                         if(m%2==0){
-                            panel.add(new ImagePanel("White.png"));
+                            panel.add(new ImagePanel("Blue.png"));
                         }
                         else{
-                            panel.add(new ImagePanel("Blue.png"));
+                            panel.add(new ImagePanel("White.png"));
                         }
                     }
                 }
