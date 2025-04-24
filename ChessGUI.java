@@ -3,8 +3,8 @@ import javax.swing.*;
 
 public class ChessGUI {
     
-    private static ImagePanel bluePanel = new ImagePanel("Blue.png");
-    private static ImagePanel whitePanel = new ImagePanel("White.png");
+    private ImagePanel bluePanel = new ImagePanel("Blue.png");
+    private ImagePanel whitePanel = new ImagePanel("White.png");
 
 
 
@@ -15,7 +15,7 @@ public class ChessGUI {
         GridLayout layout = new GridLayout(8,8);
 
         frame.add(panel);
-        frame.setLayout(layout);
+        panel.setLayout(layout);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000,1000);
         frame.setLocationRelativeTo(null);
@@ -28,10 +28,10 @@ public class ChessGUI {
                     
                     for(int n=0; n<8; n++){
                         if(n%2==0){
-                            panel.add(new JLabel(bluePanel));
+                            panel.add(new ImagePanel("Blue.png"));
                         }
                         else{
-                            panel.add(new JLabel(whitePanel));
+                            panel.add(new ImagePanel("White.png"));
                         }
                     }
 
@@ -39,10 +39,10 @@ public class ChessGUI {
                 else{
                     for(int m=0; m<8; m++){
                         if(m%2==0){
-                            panel.add(new JLabel(whitePanel));
+                            panel.add(new ImagePanel("White.png"));
                         }
                         else{
-                            panel.add(new JLabel(bluePanel));
+                            panel.add(new ImagePanel("Blue.png"));
                         }
                     }
                 }
