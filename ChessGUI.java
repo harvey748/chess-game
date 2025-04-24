@@ -3,7 +3,8 @@ import javax.swing.*;
 
 public class ChessGUI {
     
-
+    private ImagePanel bluePanel = new ImagePanel("Blue.png");
+    private ImagePanel whitePanel = new ImagePanel("White.png");
 
 
 
@@ -11,6 +12,7 @@ public class ChessGUI {
 
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
+        
         GridLayout layout = new GridLayout(8,8);
         frame.add(panel);
         frame.setLayout(layout);
