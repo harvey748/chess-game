@@ -19,6 +19,15 @@ public class ChessGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000,1000);
         frame.setLocationRelativeTo(null);
+
+        for (int i=0; i<=7; int j=0; j<=7; i++; j++){
+
+            if (i=0 && j=0){
+
+                Square_Blue = new ImageIcon("Blue"+ i + ".png");
+
+            }
+        }
         
 
         frame.setVisible(true);
