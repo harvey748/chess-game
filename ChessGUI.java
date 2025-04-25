@@ -3,8 +3,9 @@ import javax.swing.*;
 
 public class ChessGUI {
     
-    private ImagePanel bluePanel = new ImagePanel("Blue.png");
-    private ImagePanel whitePanel = new ImagePanel("White.png");
+    //create both of the needed Icons to give to the buttons later, make it static so that it can be used in the main code.
+    private static ImageIcon whiteIcon = new ImageIcon("White.png");
+    private static ImageIcon blueIcon = new ImageIcon("Blue.png");
 
 
 
@@ -13,6 +14,8 @@ public class ChessGUI {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         GridLayout layout = new GridLayout(8,8);
+        //Create Both Blue and White buttons
+
 
         frame.add(panel);
         panel.setLayout(layout);
@@ -27,10 +30,18 @@ public class ChessGUI {
                     
                     for(int n=0; n<8; n++){
                         if(n%2==0){
-                            panel.add(new ImagePanel("White.png"));
+                            //create White Button and set its icon to the white square
+                            JButton whiteButton = new JButton();
+                            whiteButton.setIcon(whiteIcon);
+                            //add the button to the grid
+                            panel.add(whiteButton);
                         }
                         else{
-                            panel.add(new ImagePanel("Blue.png"));
+                            //create Blue Button and set its icon to the blue square
+                            JButton blueButton = new JButton();
+                            blueButton.setIcon(blueIcon);
+                            //add the button to the grid
+                            panel.add(blueButton);
                         }
                     }
 
@@ -38,10 +49,19 @@ public class ChessGUI {
                 else{
                     for(int m=0; m<8; m++){
                         if(m%2==0){
-                            panel.add(new ImagePanel("Blue.png"));
+                            JButton blueButton = new JButton();
+                            blueButton.setIcon(blueIcon);
+
+
+                            panel.add(blueButton);
+
                         }
                         else{
-                            panel.add(new ImagePanel("White.png"));
+                            JButton whiteButton = new JButton();
+                            whiteButton.setIcon(whiteIcon);
+
+                            panel.add(whiteButton);
+
                         }
                     }
                 }
