@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.image.ImageObserver;
+
 
 public class ChessGUI {
     
@@ -49,7 +51,18 @@ public class ChessGUI {
                         }
 
                         if(i==6){
-                            boardSquares[i][n].add(new JLabel(new ImageIcon("White_Pawn.png")));
+                            // Load the image using ImageIcon
+                            ImageIcon pawnIcon = new ImageIcon("White_Pawn.png");
+
+                            // Get the Image from the ImageIcon
+                            Image pawn = pawnIcon.getImage();
+  
+                            // Scale the image
+                            Image scaledPawn = pawn.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+  
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledPawnIcon = new ImageIcon(scaledPawn);
+                            boardSquares[i][n].add(new JLabel(scaledPawnIcon));
                         }
                     }
 
