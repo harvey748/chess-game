@@ -50,6 +50,21 @@ public class ChessGUI {
                             panel.add(blueButton);
                         }
 
+                        if((i==0&&n==0) || (i==0&&n==7)){
+                            // Load the image using ImageIcon
+                            ImageIcon rookIcon = new ImageIcon("Black_Rook.png");
+
+                            // Get the Image from the ImageIcon
+                            Image rook = rookIcon.getImage();
+  
+                            // Scale the image
+                            Image scaledRook = rook.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+  
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledRookIcon = new ImageIcon(scaledRook);
+                            boardSquares[i][n].add(new JLabel(scaledRookIcon));
+                        }
+
                         if(i==6){
                             // Load the image using ImageIcon
                             ImageIcon pawnIcon = new ImageIcon("White_Pawn.png");
