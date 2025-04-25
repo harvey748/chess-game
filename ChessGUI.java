@@ -3,6 +3,7 @@ import javax.swing.*;
 
 public class ChessGUI {
     
+    private static JButton[][] boardSquares = new JButton[8][8];
     //create both of the needed Icons to give to the buttons later, make it static so that it can be used in the main code.
     private static ImageIcon whiteIcon = new ImageIcon("White.png");
     private static ImageIcon blueIcon = new ImageIcon("Blue.png");
@@ -27,12 +28,13 @@ public class ChessGUI {
         for(int i=0; i<=7; i++){
             
                 if(i%2==0){
-                    
+            
                     for(int n=0; n<8; n++){
                         if(n%2==0){
                             //create White Button and set its icon to the white square
                             JButton whiteButton = new JButton();
                             whiteButton.setIcon(whiteIcon);
+                            boardSquares[i][n] = whiteButton;
                             //add the button to the grid
                             panel.add(whiteButton);
                         }
@@ -40,8 +42,14 @@ public class ChessGUI {
                             //create Blue Button and set its icon to the blue square
                             JButton blueButton = new JButton();
                             blueButton.setIcon(blueIcon);
+                            boardSquares[i][n] = blueButton;
+
                             //add the button to the grid
                             panel.add(blueButton);
+                        }
+
+                        if(i==6){
+                            boardSquares[i][n].add(new JLabel(new ImageIcon("White_Pawn.png")));
                         }
                     }
 
@@ -51,6 +59,7 @@ public class ChessGUI {
                         if(m%2==0){
                             JButton blueButton = new JButton();
                             blueButton.setIcon(blueIcon);
+                            boardSquares[i][m] = blueButton;
 
 
                             panel.add(blueButton);
@@ -59,6 +68,7 @@ public class ChessGUI {
                         else{
                             JButton whiteButton = new JButton();
                             whiteButton.setIcon(whiteIcon);
+                            boardSquares[i][m] = whiteButton;
 
                             panel.add(whiteButton);
 
