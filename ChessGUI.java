@@ -5,6 +5,37 @@ import java.awt.image.ImageObserver;
 
 public class ChessGUI {
     
+    //for movement of pieces 
+    private static boolean isValidMove(JButton fromButton, JButton toButton){
+        if(toButton.getIcon() == null){
+            return true;
+        }
+        return false;
+        
+    }
+    private static JButton selectedButton = null;
+    private static void handleButtonClick(JButton button){
+        //makes sure that the button clicked had a piece on it and highlights the selected button
+        if (button.getIcon() != null && selectedButton == null){
+            selectedButton = button;
+            button.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+        }
+        //sets the next button you click on icon to the last icon selected then deletes the icon from the original button 
+        else if(selectedButton != null && selectedButton.getIcon() != null){
+           
+            if(isValidMove(selectedButton, button)){
+                button.setIcon(selectedButton.getIcon());
+                selectedButton.setIcon(null);
+                selectedButton.setBorder(null);
+                selectedButton = null;
+            }
+            else{
+                selectedButton.setBorder(null);
+                selectedButton = null;
+            }
+        }
+    }
+
     private static JButton[][] boardSquares = new JButton[8][8];
     //create both of the needed Icons to give to the buttons later, make it static so that it can be used in the main code.
     private static ImageIcon whiteIcon = new ImageIcon("White.png");
@@ -34,20 +65,29 @@ public class ChessGUI {
                     for(int n=0; n<8; n++){
                         if(n%2==0){
                             //create White Button and set its icon to the white square
-                            JButton whiteButton = new JButton();
-                            whiteButton.setIcon(whiteIcon);
+                            ChessSquareButton whiteButton = new ChessSquareButton();
+                            whiteButton.setBackground(Color.WHITE);
                             boardSquares[i][n] = whiteButton;
                             //add the button to the grid
                             panel.add(whiteButton);
+                            // added action listener to detected when the white buttons are clicked
+                            whiteButton.addActionListener(e -> {
+                                handleButtonClick(whiteButton);
+                            });
                         }
                         else{
+                            //setting new colour for buttons 
+                            Color Blue = new Color(64, 224, 208);
                             //create Blue Button and set its icon to the blue square
-                            JButton blueButton = new JButton();
-                            blueButton.setIcon(blueIcon);
+                            ChessSquareButton blueButton = new ChessSquareButton();
+                            blueButton.setBackground(Blue);
                             boardSquares[i][n] = blueButton;
-
                             //add the button to the grid
                             panel.add(blueButton);
+                            //add action listener for the blue buttons
+                            blueButton.addActionListener(e -> {
+                                handleButtonClick(blueButton);
+                            });
                         }
 
                         if((i==0&&n==0) || (i==0&&n==7)){
@@ -62,7 +102,7 @@ public class ChessGUI {
   
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledRookIcon = new ImageIcon(scaledRook);
-                            boardSquares[i][n].add(new JLabel(scaledRookIcon));
+                            boardSquares[i][n].setIcon(scaledRookIcon);
                         }
                         if (i==0 && n==1 || i==0 && n==6){
                             // Load the image using ImageIcon
@@ -76,7 +116,7 @@ public class ChessGUI {
 
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledKnightIcon = new ImageIcon(scaledKnight);
-                            boardSquares[i][n].add(new JLabel(scaledKnightIcon));
+                            boardSquares[i][n].setIcon(scaledKnightIcon);
                         }
                         if (i==0 && n==2 || i==0 && n==5){
                             // Load the image using ImageIcon
@@ -90,7 +130,7 @@ public class ChessGUI {
 
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledBishopIcon = new ImageIcon(scaledBishop);
-                            boardSquares[i][n].add(new JLabel(scaledBishopIcon));
+                            boardSquares[i][n].setIcon(scaledBishopIcon);
                        }
                        if (i==0 && n==3){
                         // Load the image using ImageIcon
@@ -104,7 +144,7 @@ public class ChessGUI {
 
                         // Create a new ImageIcon with the scaled image
                         ImageIcon scaledQueenIcon = new ImageIcon(scaledQueen);
-                        boardSquares[i][n].add(new JLabel(scaledQueenIcon));
+                        boardSquares[i][n].setIcon(scaledQueenIcon);
                    }
                    if (i==0 && n==4){
                         // Load the image using ImageIcon
@@ -118,7 +158,7 @@ public class ChessGUI {
 
                         // Create a new ImageIcon with the scaled image
                         ImageIcon scaledKingIcon = new ImageIcon(scaledKing);
-                        boardSquares[i][n].add(new JLabel(scaledKingIcon));
+                        boardSquares[i][n].setIcon(scaledKingIcon);
                     }
                         if(i==6){
                             // Load the image using ImageIcon
@@ -132,7 +172,7 @@ public class ChessGUI {
   
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledPawnIcon = new ImageIcon(scaledPawn);
-                            boardSquares[i][n].add(new JLabel(scaledPawnIcon));
+                            boardSquares[i][n].setIcon(scaledPawnIcon);
                         }
                        
                     }
@@ -141,20 +181,27 @@ public class ChessGUI {
                 else{
                     for(int m=0; m<8; m++){
                         if(m%2==0){
-                            JButton blueButton = new JButton();
-                            blueButton.setIcon(blueIcon);
+                            //setting new colour for buttons 
+                            Color Blue = new Color(64, 224, 208);
+                            ChessSquareButton blueButton = new ChessSquareButton();
+                            blueButton.setBackground(Blue);
                             boardSquares[i][m] = blueButton;
-
-
                             panel.add(blueButton);
+                            //add action listener for the blue buttons
+                            blueButton.addActionListener(e -> {
+                                handleButtonClick(blueButton);
+                            });
 
                         }
                         else{
-                            JButton whiteButton = new JButton();
-                            whiteButton.setIcon(whiteIcon);
+                            ChessSquareButton whiteButton = new ChessSquareButton();
+                            whiteButton.setBackground(Color.WHITE);
                             boardSquares[i][m] = whiteButton;
-
                             panel.add(whiteButton);
+                            // added action listener to detected when the white buttons are clicked
+                            whiteButton.addActionListener(e -> {
+                                handleButtonClick(whiteButton);
+                            });
 
                         }
                         if (i==7 && m==0 || i==7 && m==7){
@@ -169,7 +216,7 @@ public class ChessGUI {
   
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledRookIcon = new ImageIcon(scaledRook);
-                            boardSquares[i][m].add(new JLabel(scaledRookIcon));
+                            boardSquares[i][m].setIcon(scaledRookIcon);
                        }
                        if (i==7 && m==1 || i==7 && m==6){
                             // Load the image using ImageIcon
@@ -183,7 +230,7 @@ public class ChessGUI {
 
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledKnightIcon = new ImageIcon(scaledKnight);
-                            boardSquares[i][m].add(new JLabel(scaledKnightIcon));
+                            boardSquares[i][m].setIcon(scaledKnightIcon);
                         }
                         if (i==7 && m==2 || i==7 && m==5){
                             // Load the image using ImageIcon
@@ -197,7 +244,7 @@ public class ChessGUI {
 
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledBishopIcon = new ImageIcon(scaledBishop);
-                            boardSquares[i][m].add(new JLabel(scaledBishopIcon));
+                            boardSquares[i][m].setIcon(scaledBishopIcon);
                        }
                         if (i==7 && m==3){
                             // Load the image using ImageIcon
@@ -211,7 +258,7 @@ public class ChessGUI {
   
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledQueenIcon = new ImageIcon(scaledQueen);
-                            boardSquares[i][m].add(new JLabel(scaledQueenIcon));
+                            boardSquares[i][m].setIcon(scaledQueenIcon);
                        }
                        if (i==7 && m==4){
                             // Load the image using ImageIcon
@@ -225,7 +272,7 @@ public class ChessGUI {
 
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledKingIcon = new ImageIcon(scaledKing);
-                            boardSquares[i][m].add(new JLabel(scaledKingIcon));
+                            boardSquares[i][m].setIcon(scaledKingIcon);
                         }
                         if(i==1){
                             // Load the image using ImageIcon
@@ -239,12 +286,16 @@ public class ChessGUI {
   
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledPawnIcon = new ImageIcon(scaledPawn);
-                            boardSquares[i][m].add(new JLabel(scaledPawnIcon));
+                            boardSquares[i][m].setIcon(scaledPawnIcon);
                         }
                     }
                 }
 
             }
+
+        
+        //for the movement of all pieces using buttons(no rules implemented yet)
+
         frame.setVisible(true);
 
 

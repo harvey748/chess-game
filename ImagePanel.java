@@ -25,5 +25,4 @@ public class ImagePanel extends JPanel{
             g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
         }
     }
-    
 }
