@@ -64,7 +64,62 @@ public class ChessGUI {
                             ImageIcon scaledRookIcon = new ImageIcon(scaledRook);
                             boardSquares[i][n].add(new JLabel(scaledRookIcon));
                         }
+                        if (i==0 && n==1 || i==0 && n==6){
+                            // Load the image using ImageIcon
+                            ImageIcon knightIcon = new ImageIcon("Black_Knight.png");
 
+                            // Get the Image from the ImageIcon
+                            Image knight = knightIcon.getImage();
+
+                            // Scale the image
+                            Image scaledKnight = knight.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledKnightIcon = new ImageIcon(scaledKnight);
+                            boardSquares[i][n].add(new JLabel(scaledKnightIcon));
+                        }
+                        if (i==0 && n==2 || i==0 && n==5){
+                            // Load the image using ImageIcon
+                            ImageIcon bishopIcon = new ImageIcon("Black_Bishop.png");
+
+                            // Get the Image from the ImageIcon
+                            Image bishop = bishopIcon.getImage();
+
+                            // Scale the image
+                            Image scaledBishop = bishop.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledBishopIcon = new ImageIcon(scaledBishop);
+                            boardSquares[i][n].add(new JLabel(scaledBishopIcon));
+                       }
+                       if (i==0 && n==3){
+                        // Load the image using ImageIcon
+                        ImageIcon queenIcon = new ImageIcon("Black_Queen.png");
+
+                        // Get the Image from the ImageIcon
+                        Image queen = queenIcon.getImage();
+
+                        // Scale the image
+                        Image scaledQueen = queen.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+                        // Create a new ImageIcon with the scaled image
+                        ImageIcon scaledQueenIcon = new ImageIcon(scaledQueen);
+                        boardSquares[i][n].add(new JLabel(scaledQueenIcon));
+                   }
+                   if (i==0 && n==4){
+                        // Load the image using ImageIcon
+                        ImageIcon kingIcon = new ImageIcon("Black_King.png");
+
+                        // Get the Image from the ImageIcon
+                        Image king = kingIcon.getImage();
+
+                        // Scale the image
+                        Image scaledKing = king.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+                        // Create a new ImageIcon with the scaled image
+                        ImageIcon scaledKingIcon = new ImageIcon(scaledKing);
+                        boardSquares[i][n].add(new JLabel(scaledKingIcon));
+                    }
                         if(i==6){
                             // Load the image using ImageIcon
                             ImageIcon pawnIcon = new ImageIcon("White_Pawn.png");
@@ -79,6 +134,7 @@ public class ChessGUI {
                             ImageIcon scaledPawnIcon = new ImageIcon(scaledPawn);
                             boardSquares[i][n].add(new JLabel(scaledPawnIcon));
                         }
+                       
                     }
 
                 }
@@ -100,6 +156,90 @@ public class ChessGUI {
 
                             panel.add(whiteButton);
 
+                        }
+                        if (i==7 && m==0 || i==7 && m==7){
+                            // Load the image using ImageIcon
+                            ImageIcon rookIcon = new ImageIcon("White_Rook.png");
+
+                            // Get the Image from the ImageIcon
+                            Image rook = rookIcon.getImage();
+  
+                            // Scale the image
+                            Image scaledRook = rook.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+  
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledRookIcon = new ImageIcon(scaledRook);
+                            boardSquares[i][m].add(new JLabel(scaledRookIcon));
+                       }
+                       if (i==7 && m==1 || i==7 && m==6){
+                            // Load the image using ImageIcon
+                            ImageIcon knightIcon = new ImageIcon("White_Knight.png");
+
+                            // Get the Image from the ImageIcon
+                            Image knight = knightIcon.getImage();
+
+                            // Scale the image
+                            Image scaledKnight = knight.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledKnightIcon = new ImageIcon(scaledKnight);
+                            boardSquares[i][m].add(new JLabel(scaledKnightIcon));
+                        }
+                        if (i==7 && m==2 || i==7 && m==5){
+                            // Load the image using ImageIcon
+                            ImageIcon bishopIcon = new ImageIcon("White_Bishop.png");
+
+                            // Get the Image from the ImageIcon
+                            Image bishop = bishopIcon.getImage();
+
+                            // Scale the image
+                            Image scaledBishop = bishop.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledBishopIcon = new ImageIcon(scaledBishop);
+                            boardSquares[i][m].add(new JLabel(scaledBishopIcon));
+                       }
+                        if (i==7 && m==3){
+                            // Load the image using ImageIcon
+                            ImageIcon queenIcon = new ImageIcon("White_Queen.png");
+
+                            // Get the Image from the ImageIcon
+                            Image queen = queenIcon.getImage();
+  
+                            // Scale the image
+                            Image scaledQueen = queen.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+  
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledQueenIcon = new ImageIcon(scaledQueen);
+                            boardSquares[i][m].add(new JLabel(scaledQueenIcon));
+                       }
+                       if (i==7 && m==4){
+                            // Load the image using ImageIcon
+                            ImageIcon kingIcon = new ImageIcon("White_King.png");
+
+                            // Get the Image from the ImageIcon
+                            Image king = kingIcon.getImage();
+
+                            // Scale the image
+                            Image scaledKing = king.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledKingIcon = new ImageIcon(scaledKing);
+                            boardSquares[i][m].add(new JLabel(scaledKingIcon));
+                        }
+                        if(i==1){
+                            // Load the image using ImageIcon
+                            ImageIcon pawnIcon = new ImageIcon("Black_Pawn.png");
+
+                            // Get the Image from the ImageIcon
+                            Image pawn = pawnIcon.getImage();
+  
+                            // Scale the image
+                            Image scaledPawn = pawn.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+  
+                            // Create a new ImageIcon with the scaled image
+                            ImageIcon scaledPawnIcon = new ImageIcon(scaledPawn);
+                            boardSquares[i][m].add(new JLabel(scaledPawnIcon));
                         }
                     }
                 }
