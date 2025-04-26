@@ -4,7 +4,18 @@ import java.awt.image.ImageObserver;
 
 
 public class ChessGUI {
-    
+    //finds the row and col of the a button (used in future for validation)
+    private static Point getButtonPosition(JButton button){
+        for(int row = 0; row<8; row++){
+            for(int col = 0; col<8; col++){
+                //if the button at boardSquares is the same as button clicked return a new point x=row y=col
+                if(boardSquares[row][col] == button){
+                    return new Point(row, col);
+                }
+            }
+        }
+        return null;
+    }
     //for movement of pieces 
     private static boolean isValidMove(JButton fromButton, JButton toButton){
         if(toButton.getIcon() == null){
@@ -34,6 +45,13 @@ public class ChessGUI {
                 selectedButton = null;
             }
         }
+        //figures out what square your moving from and too so it can use it in pawn.java
+        Point from = getButtonPosition(selectedButton);
+        Point to = getButtonPosition(button);
+
+        int fromRow = from.x;
+        int toRow = to.x;
+
     }
 
     private static JButton[][] boardSquares = new JButton[8][8];
