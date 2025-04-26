@@ -5,17 +5,8 @@ import java.awt.image.ImageObserver;
 
 public class ChessGUI {
     //finds the row and col of the a button (used in future for validation)
-    private static Point getButtonPosition(JButton button){
-        for(int row = 0; row<8; row++){
-            for(int col = 0; col<8; col++){
-                //if the button at boardSquares is the same as button clicked return a new point x=row y=col
-                if(boardSquares[row][col] == button){
-                    return new Point(row, col);
-                }
-            }
-        }
-        return null;
-    }
+
+    
     //for movement of pieces 
     private static boolean isValidMove(JButton fromButton, JButton toButton){
         if(toButton.getIcon() == null){
@@ -45,19 +36,13 @@ public class ChessGUI {
                 selectedButton = null;
             }
         }
-        //figures out what square your moving from and too so it can use it in pawn.java
-        Point from = getButtonPosition(selectedButton);
-        Point to = getButtonPosition(button);
 
-        int fromRow = from.x;
-        int toRow = to.x;
+
 
     }
 
     private static JButton[][] boardSquares = new JButton[8][8];
-    //create both of the needed Icons to give to the buttons later, make it static so that it can be used in the main code.
-    private static ImageIcon whiteIcon = new ImageIcon("White.png");
-    private static ImageIcon blueIcon = new ImageIcon("Blue.png");
+
 
 
 
@@ -191,6 +176,8 @@ public class ChessGUI {
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledPawnIcon = new ImageIcon(scaledPawn);
                             boardSquares[i][n].setIcon(scaledPawnIcon);
+
+                            Pawn white_Pawn = new Pawn(boardSquares[i][n], boardSquares);
                         }
                        
                     }
@@ -305,6 +292,9 @@ public class ChessGUI {
                             // Create a new ImageIcon with the scaled image
                             ImageIcon scaledPawnIcon = new ImageIcon(scaledPawn);
                             boardSquares[i][m].setIcon(scaledPawnIcon);
+
+                            Pawn black_Pawn = new Pawn(boardSquares[i][m], boardSquares);
+
                         }
                     }
                 }

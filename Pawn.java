@@ -1,5 +1,19 @@
+import javax.swing.*;
+
 public class Pawn extends ChessPiece {
-    public boolean canMovePawn(int fromRow, int toRow, int fromCol, boolean isFirstMove, ChessPiece[][] board){
+
+    private static JButton boardSquare;
+    private static JButton[][] Board;
+
+
+    public Pawn(JButton boardSquares, JButton[][] Board){
+        Pawn.Board = Board;
+        Pawn.boardSquare = boardSquare;
+    }
+
+
+
+    public boolean movePawn(int fromRow, int toRow, int fromCol, int toCol, boolean isFirstMove, ChessPiece[][] board){
         if(isFirstMove){
             if(toRow - fromRow == 1 || toRow - fromRow == 2){
             //checks if there is a piece blocking the move
