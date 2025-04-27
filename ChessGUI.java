@@ -59,6 +59,13 @@ public class ChessGUI {
         else if(selectedButton != null && selectedButton.getIcon() != null){
 
             ChessPiece current_Piece = chessPiece.getChessPiece(button);
+            if(current_Piece ==null){
+                button.setIcon(selectedButton.getIcon());
+                selectedButton.setIcon(null);
+                selectedButton.setBorder(null);
+                selectedButton = null;
+
+            }
             System.out.print(current_Piece.isValidMove(selectedButton, button));
             if(current_Piece.isValidMove(selectedButton, button)){
                 
