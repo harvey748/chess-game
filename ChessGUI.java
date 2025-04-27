@@ -6,7 +6,7 @@ import java.awt.image.ImageObserver;
 public class ChessGUI {
 
     private ChessPiece chessPiece;
-    private static JButton selectedButton = null;
+    private static JButton toButton = null;
     private static JButton[][] boardSquares;
     private GridLayout layout;
     private JPanel panel;
@@ -49,34 +49,34 @@ public class ChessGUI {
     }
 
 
-    public void handleButtonClick(JButton button){
+    public void handleButtonClick(JButton fromButton){
         //makes sure that the button clicked had a piece on it and highlights the selected button
-        if (button.getIcon() != null && selectedButton == null){
-            selectedButton = button;
-            button.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+        if (fromButton.getIcon() != null && toButton == null){
+            toButton = fromButton;
+            fromButton.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         }
         //sets the next button you click on icon to the last icon selected then deletes the icon from the original button 
-        else if(selectedButton != null && selectedButton.getIcon() != null){
+        else if(toButton != null && toButton.getIcon() != null){
 
-            ChessPiece current_Piece = chessPiece.getChessPiece(button);
+            ChessPiece current_Piece = chessPiece.getChessPiece(fromButton);
             if(current_Piece ==null){
-                button.setIcon(selectedButton.getIcon());
-                selectedButton.setIcon(null);
-                selectedButton.setBorder(null);
-                selectedButton = null;
+                fromButton.setIcon(toButton.getIcon());
+                toButton.setIcon(null);
+                toButton.setBorder(null);
+                toButton = null;
 
             }
-            System.out.print(current_Piece.isValidMove(selectedButton, button));
-            if(current_Piece.isValidMove(selectedButton, button)){
+            System.out.print(current_Piece.isValidMove(toButton, fromButton));
+            if(current_Piece.isValidMove(toButton, fromButton)){
                 
-                button.setIcon(selectedButton.getIcon());
-                selectedButton.setIcon(null);
-                selectedButton.setBorder(null);
-                selectedButton = null;
+                fromButton.setIcon(toButton.getIcon());
+                toButton.setIcon(null);
+                toButton.setBorder(null);
+                toButton = null;
             }
             else{
-                selectedButton.setBorder(null);
-                selectedButton = null;
+                toButton.setBorder(null);
+                toButton = null;
             }
         }
     }
