@@ -2,8 +2,8 @@ import javax.swing.JButton;
 
 public class Rook extends ChessPiece{
 
-    public Rook(JButton boardSquare, JButton[][] Board, String pieceName, String colour){
-        super(boardSquare, Board, pieceName, colour);
+    public Rook(int Yloc, int Xloc, JButton location, JButton[][] Board, String pieceName, String colour){
+        super(Yloc, Xloc, location, Board, pieceName, colour);
 
         pieces.add(this);
     }

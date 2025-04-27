@@ -13,14 +13,14 @@ public class ChessGUI {
     private GridLayout layout;
     private JPanel panel;
     private JFrame frame;
+    private JButton fromButton;
 
 
 
     
 
-    public ChessGUI(ChessPiece chessPiece){
-        this.chessPiece = chessPiece;
-        this.boardSquares = new JButton[8][8];
+    public ChessGUI(){
+        boardSquares = new JButton[8][8];
         frame = new JFrame();
         panel = new JPanel();
         layout = new GridLayout(8,8);
@@ -38,51 +38,41 @@ public class ChessGUI {
     //for movement of pieces 
 
 
-    public String checkPiece(JButton button){
+    /*public String checkPiece(JButton button){
 
         for(int i=0; i<8; i++){
             for(int j=0; j<8; j++){
-                if(button == this.boardSquares[i][j]){
+                if(button == boardSquares[i][j]){
                     return(chessPiece.checkPiece(button));
                 }
             }
         }
         return(null);
-    }
+    }*/
 
 
-    public void handleButtonClick(JButton fromButton){
+    public void handleButtonClick(JButton toButton){
         //makes sure that the button clicked had a piece on it and highlights the selected button
-        if (fromButton.getIcon() != null && toButton == null){
-            toButton = fromButton;
-            fromButton.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+        if (toButton.getIcon() != null && fromButton == null){
+            fromButton = toButton;
+            toButton.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         }
         //sets the next button you click on icon to the last icon selected then deletes the icon from the original button 
-        else if(toButton != null && toButton.getIcon() != null){
-            if(chessPiece ==null){
-                current_Piece =null;
-            }
-            else{
-                current_Piece = chessPiece.getChessPiece(fromButton);
-            }
-            if(current_Piece ==null){
-                fromButton.setIcon(toButton.getIcon());
-                toButton.setIcon(null);
-                toButton.setBorder(null);
-                toButton = null;
-
-            }
-            System.out.print(current_Piece.isValidMove(toButton, fromButton));
-            if(current_Piece.isValidMove(toButton, fromButton)){
+        else if(fromButton != null && fromButton.getIcon() != null && fromButton != toButton){
+            
+            
+            current_Piece =ChessPiece.getChessPiece(fromButton);
+            
+           
+            if(current_Piece != null &&current_Piece.isValidMove(fromButton, toButton)){
                 
-                fromButton.setIcon(toButton.getIcon());
-                toButton.setIcon(null);
-                toButton.setBorder(null);
-                toButton = null;
+                toButton.setIcon(fromButton.getIcon());
+                fromButton.setIcon(null);
+                fromButton.setBorder(null);
+                fromButton = null;
             }
             else{
-                toButton.setBorder(null);
-                toButton = null;
+                
             }
         }
     }
@@ -136,7 +126,7 @@ public class ChessGUI {
                         // Create a new ImageIcon with the scaled image
                         ImageIcon scaledRookIcon = new ImageIcon(scaledRook);
                         boardSquares[i][n].setIcon(scaledRookIcon);
-                        ChessPiece black_Rook = new Rook(boardSquares[i][n], boardSquares, "Rook", "Black");
+                        ChessPiece black_Rook = new Rook(i, n, boardSquares[i][n], boardSquares, "Rook", "Black");
 
                     }
                     if (i==0 && n==1 || i==0 && n==6){
@@ -152,7 +142,7 @@ public class ChessGUI {
                         // Create a new ImageIcon with the scaled image
                         ImageIcon scaledKnightIcon = new ImageIcon(scaledKnight);
                         boardSquares[i][n].setIcon(scaledKnightIcon);
-                        ChessPiece black_Knight = new Knight(boardSquares[i][n], boardSquares, "Knight", "Black");
+                        ChessPiece black_Knight = new Knight(i, n, boardSquares[i][n], boardSquares, "Knight", "Black");
 
                     }
                     if (i==0 && n==2 || i==0 && n==5){
@@ -168,7 +158,7 @@ public class ChessGUI {
                         // Create a new ImageIcon with the scaled image
                         ImageIcon scaledBishopIcon = new ImageIcon(scaledBishop);
                         boardSquares[i][n].setIcon(scaledBishopIcon);
-                        ChessPiece black_Bishop = new Bishop(boardSquares[i][n], boardSquares, "Bishop", "Black");
+                        ChessPiece black_Bishop = new Bishop(i, n, boardSquares[i][n], boardSquares, "Bishop", "Black");
 
                    }
                    if (i==0 && n==3){
@@ -184,7 +174,7 @@ public class ChessGUI {
                     // Create a new ImageIcon with the scaled image
                     ImageIcon scaledQueenIcon = new ImageIcon(scaledQueen);
                     boardSquares[i][n].setIcon(scaledQueenIcon);
-                    ChessPiece black_Queen = new Queen(boardSquares[i][n], boardSquares, "Queen", "Black");
+                    ChessPiece black_Queen = new Queen(i, n, boardSquares[i][n], boardSquares, "Queen", "Black");
 
                }
                if (i==0 && n==4){
@@ -200,7 +190,7 @@ public class ChessGUI {
                     // Create a new ImageIcon with the scaled image
                     ImageIcon scaledKingIcon = new ImageIcon(scaledKing);
                     boardSquares[i][n].setIcon(scaledKingIcon);
-                    ChessPiece black_King = new King(boardSquares[i][n], boardSquares, "King", "Black");
+                    ChessPiece black_King = new King(i,n, boardSquares[i][n], boardSquares, "King", "Black");
 
                 }
                     if(i==6){
@@ -217,7 +207,7 @@ public class ChessGUI {
                         ImageIcon scaledPawnIcon = new ImageIcon(scaledPawn);
                         boardSquares[i][n].setIcon(scaledPawnIcon);
 
-                        ChessPiece white_Pawn = new Pawn(boardSquares[i][n], boardSquares, "Pawn", "White");
+                        ChessPiece white_Pawn = new Pawn(i, n, boardSquares[i][n], boardSquares, "Pawn", "White");
 
                     }
                    
@@ -263,7 +253,7 @@ public class ChessGUI {
                         // Create a new ImageIcon with the scaled image
                         ImageIcon scaledRookIcon = new ImageIcon(scaledRook);
                         boardSquares[i][m].setIcon(scaledRookIcon);
-                        ChessPiece white_Rook = new Rook(boardSquares[i][m], boardSquares, "Rook", "White");
+                        ChessPiece white_Rook = new Rook(i, m, boardSquares[i][m], boardSquares, "Rook", "White");
 
                    }
                    if (i==7 && m==1 || i==7 && m==6){
@@ -279,7 +269,7 @@ public class ChessGUI {
                         // Create a new ImageIcon with the scaled image
                         ImageIcon scaledKnightIcon = new ImageIcon(scaledKnight);
                         boardSquares[i][m].setIcon(scaledKnightIcon);
-                        ChessPiece whiteKnight = new Knight(boardSquares[i][m], boardSquares, "Knight", "White");
+                        ChessPiece whiteKnight = new Knight(i, m, boardSquares[i][m], boardSquares, "Knight", "White");
 
                     }
                     if (i==7 && m==2 || i==7 && m==5){
@@ -295,7 +285,7 @@ public class ChessGUI {
                         // Create a new ImageIcon with the scaled image
                         ImageIcon scaledBishopIcon = new ImageIcon(scaledBishop);
                         boardSquares[i][m].setIcon(scaledBishopIcon);
-                        ChessPiece white_Bishop = new Bishop(boardSquares[i][m], boardSquares, "Bishop", "White");
+                        ChessPiece white_Bishop = new Bishop(i, m, boardSquares[i][m], boardSquares, "Bishop", "White");
 
                         
                    }
@@ -312,7 +302,7 @@ public class ChessGUI {
                         // Create a new ImageIcon with the scaled image
                         ImageIcon scaledQueenIcon = new ImageIcon(scaledQueen);
                         boardSquares[i][m].setIcon(scaledQueenIcon);
-                        ChessPiece white_Queen = new Queen(boardSquares[i][m], boardSquares, "Queen", "White");
+                        ChessPiece white_Queen = new Queen(i, m,boardSquares[i][m], boardSquares, "Queen", "White");
 
                    }
                    if (i==7 && m==4){
@@ -329,7 +319,7 @@ public class ChessGUI {
                         ImageIcon scaledKingIcon = new ImageIcon(scaledKing);
                         boardSquares[i][m].setIcon(scaledKingIcon);
 
-                        ChessPiece white_King = new King(boardSquares[i][m], boardSquares, "King", "White");
+                        ChessPiece white_King = new King(i, m, boardSquares[i][m], boardSquares, "King", "White");
 
                     }
                     if(i==1){
@@ -346,7 +336,7 @@ public class ChessGUI {
                         ImageIcon scaledPawnIcon = new ImageIcon(scaledPawn);
                         boardSquares[i][m].setIcon(scaledPawnIcon);
 
-                        ChessPiece black_Pawn = new Pawn(boardSquares[i][m], boardSquares, "Pawn", "Black");
+                        ChessPiece black_Pawn = new Pawn(i, m, boardSquares[i][m], boardSquares, "Pawn", "Black");
 
                     }
                 }
@@ -358,8 +348,7 @@ public class ChessGUI {
 
     public static void main(String[] args){
 
-        ChessPiece chessPiece = new ChessPiece();
-        ChessGUI GUI = new ChessGUI(chessPiece);
+        ChessGUI GUI = new ChessGUI();
         GUI.setBoard(GUI.panel);
 
         

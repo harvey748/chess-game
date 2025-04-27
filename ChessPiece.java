@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 
 //superclass
-public class ChessPiece {
+public abstract class ChessPiece {
 
     //protected means that any subclass can access these attributes
+    protected int Yloc;
+    protected int Xloc;
     protected static List<ChessPiece> pieces = new ArrayList<>();
     protected JButton location;
     protected JButton[][] boardSquares;
@@ -17,32 +19,43 @@ public class ChessPiece {
     protected String colour;
 
     public ChessPiece(){
-        
+
     }
 
 
-    public ChessPiece(JButton location, JButton[][] Board, String pieceName, String colour){
+    public ChessPiece(int Yloc, int Xloc, JButton location, JButton[][] Board, String pieceName, String colour){
+        this.Yloc = Yloc;
+        this.Xloc = Xloc;
         this.location = location;
         this.boardSquares = Board;
         this.pieceName = pieceName;
+        this.colour = colour;
     }
 
 
-    public boolean isValidMove(JButton selectedButton, JButton button ){
-        return(true);
-    }
+    public abstract boolean isValidMove(JButton selectedButton, JButton button );
+     
 
-    public ChessPiece getChessPiece(JButton button){
+    public static ChessPiece getChessPiece(JButton button){
 
-        for(int k=0; k<32; k++){
-            if(pieces.get(k).location == button){
-               return(pieces.get(k));
+        for (ChessPiece piece : pieces) {
+            if (piece.location == button) {
+                return piece;
             }
-            
         }
         return(null);
 
+       
     }
+
+    public int getYloc(){
+        return(this.Yloc);
+    }
+
+    public int getXloc(){
+        return(this.Xloc);
+    }
+
 
     public String checkPiece(JButton button){
 
