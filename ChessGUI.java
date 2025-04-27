@@ -5,6 +5,8 @@ import java.awt.image.ImageObserver;
 
 public class ChessGUI {
 
+
+    private ChessPiece current_Piece;
     private ChessPiece chessPiece;
     private static JButton toButton = null;
     private static JButton[][] boardSquares;
@@ -57,8 +59,12 @@ public class ChessGUI {
         }
         //sets the next button you click on icon to the last icon selected then deletes the icon from the original button 
         else if(toButton != null && toButton.getIcon() != null){
-
-            ChessPiece current_Piece = chessPiece.getChessPiece(fromButton);
+            if(chessPiece ==null){
+                current_Piece =null;
+            }
+            else{
+                current_Piece = chessPiece.getChessPiece(fromButton);
+            }
             if(current_Piece ==null){
                 fromButton.setIcon(toButton.getIcon());
                 toButton.setIcon(null);
