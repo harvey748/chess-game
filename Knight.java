@@ -8,16 +8,56 @@ public class Knight extends ChessPiece {
 
         pieces.add(this);
     }
+
     @Override
     public boolean isValidMove(JButton fromButton, JButton toButton){
-        
-        ChessPiece.replaceChessPiece(toButton, fromButton);
 
-        JButton temp = new JButton();
-        temp = this.location;
-        this.location = toButton;
-        fromButton = temp;
-        return true;
+        int To_xPos = -1;
+        int To_yPos = -1;
+        int From_xPos = -1;
+        int From_yPos = -1;
+        for(int i =0; i<8; i++){
+            for(int j = 0; j<8; j++){
+                if(boardSquares[i][j] == toButton){
+                    To_yPos = i;
+                    To_xPos = j;
+                }
+            }
+        }
+
+        for(int i =0; i<8; i++){
+            for(int j = 0; j<8; j++){
+                if(boardSquares[i][j] == fromButton){
+                    From_yPos = i;
+                    From_xPos = j;
+                }
+            }
+        }
+        if(this.colour.equals("White")){
+            if((To_yPos == (From_yPos+1) || To_yPos ==(From_yPos-1)) && (To_xPos == (From_xPos+2) || To_xPos == (From_xPos-2))){
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                return true;
+            }
+            else if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        if(this.colour.equals("Black")){
+            if((To_yPos == (From_yPos+1) || To_yPos ==(From_yPos-1)) && (To_xPos == (From_xPos+2) || To_xPos == (From_xPos-2))){
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                return true;
+            }
+            else if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                return true;
+            }
+        }
+        
+        return false;
         
     }
 }

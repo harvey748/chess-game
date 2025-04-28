@@ -33,17 +33,12 @@ public class King extends ChessPiece {
                 }
             }
         }
-
-
-
-        ChessPiece.replaceChessPiece(toButton, fromButton);
-
-        JButton temp = new JButton();
-        temp = this.location;
-        this.location = toButton;
-        fromButton = temp;
-        return true;
-        
-        
+        if(Math.abs(To_yPos - From_yPos) <= 1 && Math.abs(To_xPos - From_xPos) <= 1){
+            ChessPiece.replaceChessPiece(toButton, fromButton);
+            return true;
+        }
+        else{
+            return false;
+        }           
     }
 }
