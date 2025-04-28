@@ -33,31 +33,29 @@ public class Knight extends ChessPiece {
                 }
             }
         }
-        if(this.colour.equals("White")){
-            if((To_yPos == (From_yPos+1) || To_yPos ==(From_yPos-1)) && (To_xPos == (From_xPos+2) || To_xPos == (From_xPos-2))){
-                ChessPiece.replaceChessPiece(toButton, fromButton);
-                return true;
-            }
-            else if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
-                ChessPiece.replaceChessPiece(toButton, fromButton);
-                return true;
-            }
-            else{
-                return false;
-            }
+        
+        if((To_yPos == (From_yPos+1) || To_yPos ==(From_yPos-1)) && (To_xPos == (From_xPos+2) || To_xPos == (From_xPos-2))){
+            ChessPiece.replaceChessPiece(toButton, fromButton);
+            return true;
         }
-        if(this.colour.equals("Black")){
-            if((To_yPos == (From_yPos+1) || To_yPos ==(From_yPos-1)) && (To_xPos == (From_xPos+2) || To_xPos == (From_xPos-2))){
-                ChessPiece.replaceChessPiece(toButton, fromButton);
-                return true;
-            }
-            else if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
-                ChessPiece.replaceChessPiece(toButton, fromButton);
-                return true;
-            }
+        else if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
+            ChessPiece.replaceChessPiece(toButton, fromButton);
+            return true;
+        }
+        if((To_yPos == (From_yPos+1) || To_yPos ==(From_yPos-1)) && (To_xPos == (From_xPos+2) || To_xPos == (From_xPos-2))){
+
+            ChessPiece.replaceChessPiece(toButton, fromButton);
+            return(true);    
+        }
+        if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
+
+            ChessPiece.replaceChessPiece(toButton, fromButton);
+            return(true);    
         }
         
         return false;
         
     }
+        
 }
+

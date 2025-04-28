@@ -34,11 +34,20 @@ public class King extends ChessPiece {
             }
         }
         if(Math.abs(To_yPos - From_yPos) <= 1 && Math.abs(To_xPos - From_xPos) <= 1){
-            ChessPiece.replaceChessPiece(toButton, fromButton);
-            return true;
+            if(boardSquares[To_yPos][To_xPos].getIcon() == null){
+                ChessPiece.moveChessPiece(toButton, fromButton);
+                return true;
+            }
         }
-        else{
-            return false;
-        }           
+        if(Math.abs(To_yPos - From_yPos) <= 1 && Math.abs(To_xPos - From_xPos) <= 1){
+            if(boardSquares[To_yPos][To_xPos].getIcon() != null){
+
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                return(true);
+            }
+        }
+
+        return false;
+                   
     }
 }
