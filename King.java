@@ -9,13 +9,41 @@ public class King extends ChessPiece {
     }
     @Override
     public boolean isValidMove(JButton fromButton, JButton toButton){
-        if(toButton.getIcon() == null){
-            JButton temp = new JButton();
-            temp = this.location;
-            this.location = toButton;
-            fromButton = temp;
-            return true;
+
+        //KING LOGIC
+
+        int To_xPos = -1;
+        int To_yPos = -1;
+        int From_xPos = -1;
+        int From_yPos = -1;
+        for(int i =0; i<8; i++){
+            for(int j = 0; j<8; j++){
+                if(boardSquares[i][j] == toButton){
+                    To_yPos = i;
+                    To_xPos = j;
+                }
+            }
         }
-        return false;
+
+        for(int i =0; i<8; i++){
+            for(int j = 0; j<8; j++){
+                if(boardSquares[i][j] == fromButton){
+                    From_yPos = i;
+                    From_xPos = j;
+                }
+            }
+        }
+
+
+
+        ChessPiece.replaceChessPiece(toButton, fromButton);
+
+        JButton temp = new JButton();
+        temp = this.location;
+        this.location = toButton;
+        fromButton = temp;
+        return true;
+        
+        
     }
 }

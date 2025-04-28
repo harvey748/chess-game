@@ -18,10 +18,10 @@ public class Pawn extends ChessPiece {
     @Override
     public boolean isValidMove(JButton fromButton, JButton toButton){
 
-        int To_xPos = 0;
-        int To_yPos = 0;
-        int From_xPos = 0;
-        int From_yPos = 0;
+        int To_xPos = -1;
+        int To_yPos = -1;
+        int From_xPos = -1;
+        int From_yPos = -1;
         for(int i =0; i<8; i++){
             for(int j = 0; j<8; j++){
                 if(boardSquares[i][j] == toButton){
@@ -44,14 +44,14 @@ public class Pawn extends ChessPiece {
             System.out.printf(" From %d" ,From_yPos);
             System.out.printf(" To %d" ,To_yPos);
             if(To_yPos - From_yPos == -1 && To_xPos == From_xPos){
-                JButton temp = new JButton();
+                
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                
+               
+                /*JButton temp = new JButton();
                 temp = this.location;
                 this.location = toButton;
-                fromButton = temp;
-                /*JButton temp = new JButton();
-                temp = boardSquares[To_yPos][To_xPos];
-                boardSquares[To_yPos][To_xPos] = boardSquares[From_yPos][From_xPos];
-                boardSquares[From_yPos][From_xPos] = temp;*/
+                fromButton = temp;*/
                 return(true);
             }
             else{
@@ -64,14 +64,11 @@ public class Pawn extends ChessPiece {
             System.out.printf(" To %d" ,To_yPos);
 
             if(To_yPos - From_yPos == 1  && To_xPos == From_xPos){
-                JButton temp = new JButton();
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                /*JButton temp = new JButton();
                 temp = this.location;
                 this.location = toButton;
-                fromButton = temp;
-                /*JButton temp = new JButton();
-                temp = boardSquares[To_yPos][To_xPos];
-                boardSquares[To_yPos][To_xPos] = boardSquares[From_yPos][From_xPos];
-                boardSquares[From_yPos][From_xPos] = temp;*/
+                fromButton = temp;*/
                 return(true);
             }
             else{
@@ -84,6 +81,9 @@ public class Pawn extends ChessPiece {
         }
 
     }
+
+
+    
 
 
 

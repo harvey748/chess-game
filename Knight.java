@@ -11,14 +11,13 @@ public class Knight extends ChessPiece {
     @Override
     public boolean isValidMove(JButton fromButton, JButton toButton){
         
-        if(toButton.getIcon() == null){
-            JButton temp = new JButton();
-            temp = this.location;
-            this.location = toButton;
-            fromButton = temp;
+        ChessPiece.replaceChessPiece(toButton, fromButton);
 
-            return true;
-        }
-        return false;
+        JButton temp = new JButton();
+        temp = this.location;
+        this.location = toButton;
+        fromButton = temp;
+        return true;
+        
     }
 }

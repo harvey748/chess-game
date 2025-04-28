@@ -9,14 +9,16 @@ public class Bishop extends ChessPiece{
     }
     @Override
     public boolean isValidMove(JButton fromButton, JButton toButton){
-        if(toButton.getIcon() == null){
-            JButton temp = new JButton();
-            temp = this.location;
-            this.location = toButton;
-            fromButton = temp;
-            return true;
-        }
-        return false;
+        ChessPiece.replaceChessPiece(toButton, fromButton);
+
+        
+        JButton temp = new JButton();
+        temp = this.location;
+        this.location = toButton;
+        fromButton = temp;
+        return true;
+        
+        
     }
     
 }

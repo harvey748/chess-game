@@ -45,6 +45,8 @@ public class ChessGUI {
     //for movement of pieces 
 
     public boolean checkSquare(JButton button){
+        pieces = ChessPiece.getChessList();
+
         for (ChessPiece piece : pieces) {
             if (piece.location == button) {
                 return true;
@@ -67,22 +69,12 @@ public class ChessGUI {
         else if(fromButton != null && this.checkSquare(fromButton) && fromButton != toButton){
             
             
-            current_Piece =ChessPiece.getChessPiece(fromButton);
+            current_Piece = ChessPiece.getChessPiece(fromButton);
             System.out.printf(" \n Chess Piece Selected : %s", current_Piece.pieceName);
             
            
-            if(current_Piece != null &&current_Piece.isValidMove(fromButton, toButton)){
-                
-                toButton.setIcon(fromButton.getIcon());
-                fromButton.setIcon(null);
-                fromButton.setBorder(null);
-                fromButton = null;
-            }
-            else{
-                System.out.println("Not Valid Move");
-                fromButton =null;
-                
-            }
+            current_Piece.isValidMove(fromButton, toButton);
+            fromButton = null;
         }
     }
 
