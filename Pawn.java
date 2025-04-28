@@ -54,6 +54,10 @@ public class Pawn extends ChessPiece {
                 fromButton = temp;*/
                 return(true);
             }
+            if(this.isFirstMove(fromButton, toButton) && To_yPos - From_yPos == -2 && To_xPos == From_xPos ){
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                return true;
+            }
             else{
                 System.out.print("White Pawn Move False");
                 return(false);
@@ -71,6 +75,10 @@ public class Pawn extends ChessPiece {
                 fromButton = temp;*/
                 return(true);
             }
+            if(this.isFirstMove(fromButton, toButton) && To_yPos - From_yPos == 2 && To_xPos == From_xPos ){
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                return true;
+            }
             else{
                 System.out.print("Black Pawn Move False");
                 return(false);
@@ -79,6 +87,47 @@ public class Pawn extends ChessPiece {
         else{
             return(false);
         }
+
+    }
+    public boolean isFirstMove(JButton fromButton, JButton toButton){
+
+        int To_xPos = 0;
+        int To_yPos = 0;
+        int From_xPos = 0;
+        int From_yPos = 0;
+        for(int i =0; i<8; i++){
+            for(int j = 0; j<8; j++){
+                if(boardSquares[i][j] == toButton){
+                    To_yPos = i;
+                    To_xPos = j;
+                }
+            }
+        }
+
+        for(int i =0; i<8; i++){
+            for(int j = 0; j<8; j++){
+                if(boardSquares[i][j] == fromButton){
+                    From_yPos = i;
+                    From_xPos = j;
+                }
+            }
+        }
+        if(From_yPos == 0){
+            return false;
+        }
+        if(this.colour.equals("White")){
+            return From_yPos == 6;
+        }
+
+        if(this.colour.equals("Black")){
+                return From_yPos == 1;
+            }
+        
+        
+        return false;
+        
+
+    
 
     }
 
