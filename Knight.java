@@ -38,19 +38,23 @@ public class Knight extends ChessPiece {
             ChessPiece.moveChessPiece(toButton, fromButton);
             return true;
         }
-        else if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
+        if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
             ChessPiece.moveChessPiece(toButton, fromButton);
             return true;
         }
         if((To_yPos == (From_yPos+1) || To_yPos ==(From_yPos-1)) && (To_xPos == (From_xPos+2) || To_xPos == (From_xPos-2))){
+            if(boardSquares[To_yPos][To_xPos].getIcon() != null){
 
-            ChessPiece.replaceChessPiece(toButton, fromButton);
-            return(true);    
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                return(true); 
+            }   
         }
         if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
-
-            ChessPiece.replaceChessPiece(toButton, fromButton);
-            return(true);    
+            if(boardSquares[To_yPos][To_xPos].getIcon() != null){
+                
+                ChessPiece.replaceChessPiece(toButton, fromButton);
+                return(true);
+            }    
         }
         
         return false;
