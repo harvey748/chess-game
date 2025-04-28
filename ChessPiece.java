@@ -47,6 +47,22 @@ public abstract class ChessPiece {
         return(null);
     }
 
+
+
+    //Making a class for movement only. Not taking pieces
+    public static void moveChessPiece(JButton toButton, JButton fromButton){
+        ChessPiece From_Piece = getChessPiece(fromButton);
+        if (getChessPiece(toButton) == null){
+            toButton.setIcon(fromButton.getIcon());
+            fromButton.setIcon(null);
+            fromButton.setBorder(null);
+            From_Piece.location = toButton;
+
+        }
+    }
+
+    
+    //Making class for taking pieces and movement.
     public static void replaceChessPiece(JButton toButton, JButton fromButton){
         
         toButton.setIcon(fromButton.getIcon());
@@ -58,8 +74,6 @@ public abstract class ChessPiece {
 
         if(To_Piece ==null){
             From_Piece.location = toButton;
-            
-
         }
         else{
             

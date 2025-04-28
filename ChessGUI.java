@@ -353,9 +353,6 @@ public class ChessGUI {
         GUI.setBoard(GUI.panel);
 
         
-
-
-
         }
     }
         

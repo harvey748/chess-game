@@ -43,15 +43,12 @@ public class Pawn extends ChessPiece {
         if(this.colour.equals("White")){
             System.out.printf(" From %d" ,From_yPos);
             System.out.printf(" To %d" ,To_yPos);
-            if(To_yPos - From_yPos == -1 && To_xPos == From_xPos){
-                
+            if(To_yPos - From_yPos == -1 && To_xPos == From_xPos){   
+                ChessPiece.moveChessPiece(toButton, fromButton);
+                return(true);
+            }
+            else if(To_yPos - From_yPos == -1 && (To_xPos - From_xPos == -1 || To_xPos - From_xPos == 1)){
                 ChessPiece.replaceChessPiece(toButton, fromButton);
-                
-               
-                /*JButton temp = new JButton();
-                temp = this.location;
-                this.location = toButton;
-                fromButton = temp;*/
                 return(true);
             }
             if(this.isFirstMove(fromButton, toButton) && To_yPos - From_yPos == -2 && To_xPos == From_xPos ){
@@ -62,17 +59,20 @@ public class Pawn extends ChessPiece {
                 System.out.print("White Pawn Move False");
                 return(false);
             }
+
+
         }
         else if(this.colour.equals( "Black")){
             System.out.printf(" From %d" ,From_yPos);
             System.out.printf(" To %d" ,To_yPos);
 
             if(To_yPos - From_yPos == 1  && To_xPos == From_xPos){
+                ChessPiece.moveChessPiece(toButton, fromButton);
+
+                return(true);
+            }
+            else if(To_yPos - From_yPos == 1 && (To_xPos - From_xPos == -1 || To_xPos - From_xPos == 1)){
                 ChessPiece.replaceChessPiece(toButton, fromButton);
-                /*JButton temp = new JButton();
-                temp = this.location;
-                this.location = toButton;
-                fromButton = temp;*/
                 return(true);
             }
             if(this.isFirstMove(fromButton, toButton) && To_yPos - From_yPos == 2 && To_xPos == From_xPos ){
@@ -81,6 +81,7 @@ public class Pawn extends ChessPiece {
             }
             else{
                 System.out.print("Black Pawn Move False");
+
                 return(false);
             }
         }
