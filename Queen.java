@@ -10,7 +10,11 @@ public class Queen extends ChessPiece {
     }
     @Override
     public boolean isValidMove(JButton fromButton, JButton toButton){
-            return true;
+        JButton temp = new JButton();
+        temp = this.location;
+        this.location = toButton;
+        fromButton = temp;
+        return true;
         
     }
 }
