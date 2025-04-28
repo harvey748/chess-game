@@ -35,11 +35,11 @@ public class Knight extends ChessPiece {
         }
         
         if((To_yPos == (From_yPos+1) || To_yPos ==(From_yPos-1)) && (To_xPos == (From_xPos+2) || To_xPos == (From_xPos-2))){
-            ChessPiece.replaceChessPiece(toButton, fromButton);
+            ChessPiece.moveChessPiece(toButton, fromButton);
             return true;
         }
         else if((To_yPos == (From_yPos+2) || To_yPos ==(From_yPos-2)) && (To_xPos == (From_xPos+1) || To_xPos == (From_xPos-1))){
-            ChessPiece.replaceChessPiece(toButton, fromButton);
+            ChessPiece.moveChessPiece(toButton, fromButton);
             return true;
         }
         if((To_yPos == (From_yPos+1) || To_yPos ==(From_yPos-1)) && (To_xPos == (From_xPos+2) || To_xPos == (From_xPos-2))){
