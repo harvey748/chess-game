@@ -51,6 +51,7 @@ public abstract class ChessPiece {
 
     //Making a class for movement only. Not taking pieces
     public static void moveChessPiece(JButton toButton, JButton fromButton){
+
         ChessPiece From_Piece = getChessPiece(fromButton);
         if (getChessPiece(toButton) == null){
             toButton.setIcon(fromButton.getIcon());
