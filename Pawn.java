@@ -41,23 +41,41 @@ public class Pawn extends ChessPiece {
         }
 
         if(this.colour.equals("White")){
-            System.out.print(To_yPos);
-            if(To_yPos - From_yPos == 1 && To_xPos == From_xPos){
+            System.out.printf(" From %d" ,From_yPos);
+            System.out.printf(" To %d" ,To_yPos);
+            if(To_yPos - From_yPos == -1 && To_xPos == From_xPos){
+                JButton temp = new JButton();
+                temp = this.location;
+                this.location = toButton;
+                fromButton = temp;
+                /*JButton temp = new JButton();
+                temp = boardSquares[To_yPos][To_xPos];
                 boardSquares[To_yPos][To_xPos] = boardSquares[From_yPos][From_xPos];
+                boardSquares[From_yPos][From_xPos] = temp;*/
                 return(true);
             }
             else{
+                System.out.print("White Pawn Move False");
                 return(false);
             }
         }
         else if(this.colour.equals( "Black")){
-            System.out.print(To_yPos);
+            System.out.printf(" From %d" ,From_yPos);
+            System.out.printf(" To %d" ,To_yPos);
 
-            if(To_yPos - From_yPos == -1  && To_xPos == From_xPos){
+            if(To_yPos - From_yPos == 1  && To_xPos == From_xPos){
+                JButton temp = new JButton();
+                temp = this.location;
+                this.location = toButton;
+                fromButton = temp;
+                /*JButton temp = new JButton();
+                temp = boardSquares[To_yPos][To_xPos];
                 boardSquares[To_yPos][To_xPos] = boardSquares[From_yPos][From_xPos];
+                boardSquares[From_yPos][From_xPos] = temp;*/
                 return(true);
             }
             else{
+                System.out.print("Black Pawn Move False");
                 return(false);
             }
         }

@@ -1,11 +1,14 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.image.ImageObserver;
+import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 
 public class ChessGUI {
 
-
+    private static List<ChessPiece> pieces;
     private ChessPiece current_Piece;
     private ChessPiece chessPiece;
     private static JButton toButton = null;
@@ -13,7 +16,7 @@ public class ChessGUI {
     private GridLayout layout;
     private JPanel panel;
     private JFrame frame;
-    private JButton fromButton;
+    private static JButton fromButton;
 
 
 
@@ -37,31 +40,31 @@ public class ChessGUI {
 
     //for movement of pieces 
 
-
-    /*public String checkPiece(JButton button){
-
-        for(int i=0; i<8; i++){
-            for(int j=0; j<8; j++){
-                if(button == boardSquares[i][j]){
-                    return(chessPiece.checkPiece(button));
-                }
-            }
+    public boolean checkSquare(JButton button){
+        for (ChessPiece piece : pieces) {
+            if (piece.location == button) {
+                return true;
+            }      
         }
-        return(null);
-    }*/
-
+        return false;
+    }
 
     public void handleButtonClick(JButton toButton){
         //makes sure that the button clicked had a piece on it and highlights the selected button
-        if (toButton.getIcon() != null && fromButton == null){
+
+
+        pieces = ChessPiece.getChessList();
+        
+        if (fromButton == null || !this.checkSquare(fromButton)){
             fromButton = toButton;
             toButton.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         }
         //sets the next button you click on icon to the last icon selected then deletes the icon from the original button 
-        else if(fromButton != null && fromButton.getIcon() != null && fromButton != toButton){
+        else if(fromButton != null && this.checkSquare(fromButton) && fromButton != toButton){
             
             
             current_Piece =ChessPiece.getChessPiece(fromButton);
+            System.out.printf(" \n Chess Piece Selected : %s", current_Piece.pieceName);
             
            
             if(current_Piece != null &&current_Piece.isValidMove(fromButton, toButton)){
@@ -72,6 +75,8 @@ public class ChessGUI {
                 fromButton = null;
             }
             else{
+                System.out.println("Not Valid Move");
+                fromButton =null;
                 
             }
         }

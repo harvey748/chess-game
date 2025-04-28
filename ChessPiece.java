@@ -70,6 +70,10 @@ public abstract class ChessPiece {
         return("Nothing");
 
     }
+
+    public static List<ChessPiece> getChessList(){
+        return(pieces);
+    }
     
 }
 
