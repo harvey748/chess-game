@@ -64,24 +64,37 @@ public abstract class ChessPiece {
     
     //Making class for taking pieces and movement.
     public static void replaceChessPiece(JButton toButton, JButton fromButton){
+
         
-        toButton.setIcon(fromButton.getIcon());
-        fromButton.setIcon(null);
-        fromButton.setBorder(null);
+        if(ChessPiece.getChessPiece(toButton).colour == ChessPiece.getChessPiece(fromButton).colour){
 
-        ChessPiece To_Piece = getChessPiece(toButton);
-        ChessPiece From_Piece = getChessPiece(fromButton);
-
-        if(To_Piece ==null){
-            From_Piece.location = toButton;
         }
         else{
-            
-            From_Piece.pieceName = To_Piece.pieceName;
-            From_Piece.location = toButton;
-            pieces.remove(To_Piece);
+
+            toButton.setIcon(fromButton.getIcon());
+            fromButton.setIcon(null);
+            fromButton.setBorder(null);
+    
+            ChessPiece To_Piece = getChessPiece(toButton);
+            ChessPiece From_Piece = getChessPiece(fromButton);
+    
+            if(To_Piece ==null){
+                From_Piece.location = toButton;
+            }
+            else{
+                
+                From_Piece.pieceName = To_Piece.pieceName;
+                From_Piece.location = toButton;
+                pieces.remove(To_Piece);
+    
+            }
+
 
         }
+            
+         
+        
+
 
     }
 

@@ -41,9 +41,15 @@ public class King extends ChessPiece {
         }
         if(Math.abs(To_yPos - From_yPos) <= 1 && Math.abs(To_xPos - From_xPos) <= 1){
             if(boardSquares[To_yPos][To_xPos].getIcon() != null){
+                if(ChessPiece.getChessPiece(toButton).colour == ChessPiece.getChessPiece(fromButton).colour){
+                    return(false);
+                }
+                else{
+                    ChessPiece.replaceChessPiece(toButton, fromButton);
+                    return(true);
+                }
 
-                ChessPiece.replaceChessPiece(toButton, fromButton);
-                return(true);
+
             }
         }
 
