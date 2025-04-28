@@ -43,51 +43,69 @@ public class Pawn extends ChessPiece {
         if(this.colour.equals("White")){
             System.out.printf(" From %d" ,From_yPos);
             System.out.printf(" To %d" ,To_yPos);
-            if(To_yPos - From_yPos == -1 && To_xPos == From_xPos){   
+            
+            if(To_yPos - From_yPos == -1 && To_xPos == From_xPos){ 
+                if(boardSquares[To_yPos][To_xPos].getIcon() == null){
+
                 ChessPiece.moveChessPiece(toButton, fromButton);
                 return(true);
+                }
             }
             else if(To_yPos - From_yPos == -1 && (To_xPos - From_xPos == -1 || To_xPos - From_xPos == 1)){
+                //cant go diagonal when theres no piece
+                if(boardSquares[To_yPos][To_xPos].getIcon() != null){
+
                 ChessPiece.replaceChessPiece(toButton, fromButton);
                 return(true);
+                }
             }
             if(this.isFirstMove(fromButton, toButton) && To_yPos - From_yPos == -2 && To_xPos == From_xPos ){
-                ChessPiece.replaceChessPiece(toButton, fromButton);
-                return true;
-            }
-            else{
-                System.out.print("White Pawn Move False");
-                return(false);
-            }
+                //makes sure they cant jump over pieces 
+                if(boardSquares[From_yPos-1][From_xPos].getIcon() == null && boardSquares[To_yPos][To_xPos].getIcon() == null){
 
+                ChessPiece.moveChessPiece(toButton, fromButton);
+                return true;
+                }
+            }
+           
+            System.out.print("White Pawn Move False");
+            return(false);
+            
 
         }
+        
         else if(this.colour.equals( "Black")){
             System.out.printf(" From %d" ,From_yPos);
             System.out.printf(" To %d" ,To_yPos);
 
             if(To_yPos - From_yPos == 1  && To_xPos == From_xPos){
+                if(boardSquares[To_yPos][To_xPos].getIcon() == null){
+                
                 ChessPiece.moveChessPiece(toButton, fromButton);
-
                 return(true);
+                }
             }
             else if(To_yPos - From_yPos == 1 && (To_xPos - From_xPos == -1 || To_xPos - From_xPos == 1)){
+                //cant go diagonal when theres no piece 
+                if(boardSquares[To_yPos][To_xPos].getIcon() != null){
+
                 ChessPiece.replaceChessPiece(toButton, fromButton);
                 return(true);
+                }
             }
             if(this.isFirstMove(fromButton, toButton) && To_yPos - From_yPos == 2 && To_xPos == From_xPos ){
-                ChessPiece.replaceChessPiece(toButton, fromButton);
+                //makes sure they cant jump over pieces
+                if(boardSquares[From_yPos+1][From_xPos].getIcon() == null && boardSquares[To_yPos][To_xPos].getIcon() == null){
+                
+                ChessPiece.moveChessPiece(toButton, fromButton);
                 return true;
+                }
             }
-            else{
-                System.out.print("Black Pawn Move False");
-
-                return(false);
-            }
-        }
-        else{
+        }    
+            System.out.print("Black Pawn Move False");
             return(false);
-        }
+            
+        
 
     }
     public boolean isFirstMove(JButton fromButton, JButton toButton){
