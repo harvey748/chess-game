@@ -1,2 +1,3 @@
-# Chess
-Josh and Harvey Practise  --  Java
+#chess-game
+
+
